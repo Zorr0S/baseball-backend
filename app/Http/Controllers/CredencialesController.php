@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Credenciales;
 
 class CredencialesController extends Controller
 {
@@ -14,6 +15,8 @@ class CredencialesController extends Controller
     public function index()
     {
         //
+        $credenciales = Credenciales::all();
+        return $credenciales;
     }
 
     /**
@@ -35,6 +38,13 @@ class CredencialesController extends Controller
     public function store(Request $request)
     {
         //
+        $credenciales = Credenciales();
+        $credenciales->Nombre = $request->Nombre;
+        $credenciales->Apellidos = $request->Apellidos;
+        $credenciales->ID_Equipo = $request->ID_Equipo;
+        
+        $credenciales->save();
+
     }
 
     /**
@@ -46,6 +56,7 @@ class CredencialesController extends Controller
     public function show($id)
     {
         //
+        
     }
 
     /**
