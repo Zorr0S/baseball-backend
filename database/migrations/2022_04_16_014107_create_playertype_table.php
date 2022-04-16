@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreatePlayertypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('credenciales', function (Blueprint $table) {
-            $table->id();
-            $table->string('Nombre');
-            $table->string('Apellidos');
-            $table->integer('ID_Equipo');
-            $table->timestamps();
+        Schema::create('playertype', function (Blueprint $table) {
+            $table->integer('id', true);
+            $table->string('Nombre', 191);
         });
     }
 
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('credenciales');
+        Schema::dropIfExists('playertype');
     }
-};
+}
