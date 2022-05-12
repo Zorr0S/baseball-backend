@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TeamMembers extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $fillable = [ 'EquipoID', 'IDIntegrantes'];
+   
 }

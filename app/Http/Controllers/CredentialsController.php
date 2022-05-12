@@ -40,6 +40,14 @@ class CredentialsController extends Controller
     public function store(Request $request)
     {
         //
+        $credential= new Credential();
+        $credential->Nombre = $request->Nombre;
+        $credential->Apellidos = $request->Apellidos;
+        $credential->IDTipoJugador = $request->IDTipoJugador;
+        
+        $credential->save();
+        
+
     }
 
     /**

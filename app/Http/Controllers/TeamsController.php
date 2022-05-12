@@ -15,6 +15,8 @@ class TeamsController extends Controller
     public function index()
     {
         //
+        $teams = Teams::all();
+        return $teams;
     }
 
     /**
@@ -36,6 +38,11 @@ class TeamsController extends Controller
     public function store(Request $request)
     {
         //
+        $teams = new Teams();
+        $teams->Nombre = $request->Nombre;
+        
+        $teams->save();
+        return $teams;
     }
 
     /**

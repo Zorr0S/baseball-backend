@@ -15,6 +15,9 @@ class TeamMembersController extends Controller
     public function index()
     {
         //
+        $teamMembers =  TeamMembers::all();
+         
+        return $teamMembers;
     }
 
     /**
@@ -35,7 +38,12 @@ class TeamMembersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $teams = new TeamMembers();
+        $teams->EquipoID = $request->EquipoID;
+        $teams->IDIntegrantes = $request->IDIntegrantes;
+        
+        $teams->save();
+        return $teams;
     }
 
     /**
@@ -44,9 +52,11 @@ class TeamMembersController extends Controller
      * @param  \App\Models\TeamMembers  $teamMembers
      * @return \Illuminate\Http\Response
      */
-    public function show(TeamMembers $teamMembers)
+    public function show($id)
     {
         //
+       $teamMembers = TeamMembers::where('EquipoID',1)->get();
+       return $teamMembers;
     }
 
     /**
