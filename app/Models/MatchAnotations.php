@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class MatchAnotations extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $fillable = [ "IDPartido", "IDEquipo", "IDJugador", "IDPosicion", "CarrerasAnotadas", "HitsConectados"];
+
 }

@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Matches extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $fillable = [ "Nombre", "EquipoCasa", "EquipoVisitante"];
 }

@@ -15,6 +15,9 @@ class MatchesController extends Controller
     public function index()
     {
         //
+        $matches =  Matches::all();
+       
+        return $matches;
     }
 
     /**
@@ -36,6 +39,13 @@ class MatchesController extends Controller
     public function store(Request $request)
     {
         //
+        $matches = new Matches();
+        $matches->Nombre = $request->Nombre;
+        $matches->EquipoCasa = $request->EquipoCasa;
+        $matches->EquipoVisitante = $request->EquipoVisitante;
+        
+        $matches->save();
+        return $matches;
     }
 
     /**

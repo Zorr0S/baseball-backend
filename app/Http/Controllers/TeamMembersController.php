@@ -55,7 +55,7 @@ class TeamMembersController extends Controller
     public function show($id)
     {
         //
-       $teamMembers = TeamMembers::where('EquipoID',1)->get();
+       $teamMembers = TeamMembers::where('EquipoID',$id)->get();
        return $teamMembers;
     }
 

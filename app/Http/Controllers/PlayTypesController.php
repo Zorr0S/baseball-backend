@@ -15,6 +15,9 @@ class PlayTypesController extends Controller
     public function index()
     {
         //
+        $playTypes = PlayTypes::all();
+        
+        return $playTypes;
     }
 
     /**
@@ -36,6 +39,10 @@ class PlayTypesController extends Controller
     public function store(Request $request)
     {
         //
+        $playTypes = new PlayTypes();
+        $playTypes->Nombre= $request->Nombre;
+        $playTypes->save();
+        return $playTypes;
     }
 
     /**

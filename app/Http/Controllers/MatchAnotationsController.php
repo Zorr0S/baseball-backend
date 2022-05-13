@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\MatchAnotations;
+use App\Models\Plays;
 use Illuminate\Http\Request;
 
 class MatchAnotationsController extends Controller
@@ -12,9 +13,15 @@ class MatchAnotationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
         //
+        $matchAnotations = MatchAnotations::all();
+        for ($i= 0; $i <sizeof($matchAnotations) ; $i++) { 
+          $matchAnotations[$i]->plays = Plays::where('MatchAnotationID', $matchAnotations[$i]->id)->get();
+        }
+    
+        return $matchAnotations;
     }
 
     /**
@@ -25,6 +32,7 @@ class MatchAnotationsController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**
@@ -36,6 +44,16 @@ class MatchAnotationsController extends Controller
     public function store(Request $request)
     {
         //
+        $matchAnotations = new MatchAnotations();
+        $matchAnotations->IDPartido= $request->id;
+        $matchAnotations->IDEquipo=  $request->IDEquipo;
+        $matchAnotations->IDJugador=$request->IDJugador;
+        $matchAnotations->IDPosicion=$request->IDPosicion;
+        $matchAnotations->CarrerasAnotadas=0;
+        $matchAnotations-> HitsConectados= 0;
+        
+        $matchAnotations->save();
+        return $matchAnotations;
     }
 
     /**

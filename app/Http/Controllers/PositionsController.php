@@ -15,6 +15,8 @@ class PositionsController extends Controller
     public function index()
     {
         //
+        $positions = Positions::all();
+        return $positions;
     }
 
     /**
