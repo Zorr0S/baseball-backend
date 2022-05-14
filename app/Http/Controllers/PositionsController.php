@@ -38,6 +38,12 @@ class PositionsController extends Controller
     public function store(Request $request)
     {
         //
+        $positions = new Positions();
+        $positions->nombre = $request->nombre;
+        
+        
+        $positions->save();
+        return $positions;
     }
 
     /**

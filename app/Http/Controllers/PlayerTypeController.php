@@ -15,6 +15,8 @@ class PlayerTypeController extends Controller
     public function index()
     {
         //
+        $playerType= PlayerType::all();
+        return $playerType;
     }
 
     /**
@@ -36,6 +38,10 @@ class PlayerTypeController extends Controller
     public function store(Request $request)
     {
         //
+        $playerType= new PlayerType();
+        $playerType->Nombre =  $request->Nombre;
+        $playerType->save();
+        return $playerType;
     }
 
     /**

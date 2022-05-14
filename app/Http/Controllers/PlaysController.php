@@ -76,6 +76,12 @@ class PlaysController extends Controller
      */
     public function update(Request $request, Plays $plays)
     {
+        $plays=Plays::find($request->id);
+        $plays->jugada= $request->jugada;
+        $plays->update();
+
+        return $plays;
+        
         //
     }
 

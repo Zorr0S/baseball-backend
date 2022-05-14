@@ -16,7 +16,7 @@ class MatchAnotationsController extends Controller
     public function index($id)
     {
         //
-        $matchAnotations = MatchAnotations::all();
+        $matchAnotations = MatchAnotations::where("IDPartido",$id)->get();
         for ($i= 0; $i <sizeof($matchAnotations) ; $i++) { 
           $matchAnotations[$i]->plays = Plays::where('MatchAnotationID', $matchAnotations[$i]->id)->get();
         }
@@ -88,6 +88,13 @@ class MatchAnotationsController extends Controller
     public function update(Request $request, MatchAnotations $matchAnotations)
     {
         //
+        
+        $actualizar = MatchAnotations::find($request->idnotacion);
+     
+        $actualizar->CarrerasAnotadas=$request->CarrerasAnotadas;
+        $actualizar-> HitsConectados=$request->HitsConectados;
+        $actualizar->update();
+        return $actualizar;
     }
 
     /**

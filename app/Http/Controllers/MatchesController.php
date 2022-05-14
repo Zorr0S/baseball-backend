@@ -80,6 +80,14 @@ class MatchesController extends Controller
     public function update(Request $request, Matches $matches)
     {
         //
+        $matches=Matches::find($request->id);
+        $matches->Nombre = $request->Nombre;
+        $matches->EquipoCasa = $request->EquipoCasa;
+        $matches->EquipoVisitante = $request->EquipoVisitante;
+        $matches->update();
+
+        return $matches;
+
     }
 
     /**

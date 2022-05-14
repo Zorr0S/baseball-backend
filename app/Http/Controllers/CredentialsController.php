@@ -56,9 +56,11 @@ class CredentialsController extends Controller
      * @param  \App\Models\Credential  $credential
      * @return \Illuminate\Http\Response
      */
-    public function show(Credential $credential)
+    public function show($id)
     {
         //
+        $credential = Credential::where('id',$id)->get();
+        return   $credential;
     }
 
     /**
@@ -82,6 +84,13 @@ class CredentialsController extends Controller
     public function update(Request $request, Credential $credential)
     {
         //
+        $credential = Credential::find($request->id);
+        $credential->Nombre = $request->Nombre;
+        $credential->Apellidos = $request->Apellidos;
+        $credential->IDTipoJugador = $request->IDTipoJugador;
+        
+        $credential->update();
+        return $credential;
     }
 
     /**

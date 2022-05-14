@@ -9,6 +9,6 @@ class MatchAnotations extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = [ "IDPartido", "IDEquipo", "IDJugador", "IDPosicion", "CarrerasAnotadas", "HitsConectados"];
+    protected $fillable = ["id", "IDPartido", "IDEquipo", "IDJugador", "IDPosicion", "CarrerasAnotadas", "HitsConectados"];
 
 }

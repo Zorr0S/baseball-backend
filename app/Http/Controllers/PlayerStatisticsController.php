@@ -15,6 +15,8 @@ class PlayerStatisticsController extends Controller
     public function index()
     {
         //
+        $playerStatistics = PlayerStatistics::all();
+        return $playerStatistics;
     }
 
     /**
@@ -36,6 +38,22 @@ class PlayerStatisticsController extends Controller
     public function store(Request $request)
     {
         //
+        $playerStatistics = new PlayerStatistics();
+        $playerStatistics->IDJugador= $request->IDJugador;
+
+        $playerStatistics->JuegosGanados= $request->JuegosGanados;
+        $playerStatistics->JuegosPerdidos= $request->JuegosPerdidos;
+        $playerStatistics->Efectividad= $request->Efectividad;
+        $playerStatistics->JuegosLanzados= $request->JuegosLanzados;
+        $playerStatistics->Aperturas= $request->Aperturas;
+        $playerStatistics->JuegosCompletados= $request->JuegosCompletados;
+        $playerStatistics->JuegosBlanqueados= $request->JuegosBlanqueados;
+
+        $playerStatistics->save();
+        return $playerStatistics;
+        
+
+        
     }
 
     /**

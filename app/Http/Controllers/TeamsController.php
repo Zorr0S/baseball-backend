@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Teams;
+use App\Models\TeamMembers;
+
 use Illuminate\Http\Request;
 
 class TeamsController extends Controller
@@ -16,6 +18,10 @@ class TeamsController extends Controller
     {
         //
         $teams = Teams::all();
+        for ($i= 0; $i <sizeof($teams) ; $i++) { 
+            $teams[$i]->miembros = TeamMembers::where('EquipoID', $teams[$i]->id)->get();
+          }
+      
         return $teams;
     }
 
@@ -77,6 +83,10 @@ class TeamsController extends Controller
     public function update(Request $request, Teams $teams)
     {
         //
+        $teams= Teams::find($request->id);
+        $teams->Nombre = $request->Nombre;
+        $teams->update();
+        return $teams;
     }
 
     /**
@@ -88,5 +98,6 @@ class TeamsController extends Controller
     public function destroy(Teams $teams)
     {
         //
+
     }
 }

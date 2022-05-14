@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PlayerStatistics extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
+    protected $fillable = [ "IDJugador", "JuegosGanados", "JuegosPerdidos", "Efectividad", "JuegosLanzados", "Aperturas", "JuegosCompletados", "JuegosBlanqueados"];
 }
