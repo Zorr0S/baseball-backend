@@ -45,6 +45,8 @@ Route::put('/baseball/Credentials/{id}', [CredentialsController::class, 'update'
 Route::get('/baseball/Teams', [TeamsController::class, 'index']);
 Route::post('/baseball/Teams', [TeamsController::class, 'store']);
 Route::put('/baseball/Teams/{id}', [TeamsController::class, 'update']);
+Route::get('/baseball/Teams/{id}', [TeamsController::class, 'show']);
+
 
 
     Route::get('/baseball/Teams/{id}/members', [TeamMembersController::class, 'show']);
@@ -57,11 +59,11 @@ Route::get('/baseball/Match', [MatchesController::class, 'index']);
 Route::post('/baseball/Match', [MatchesController::class, 'store']);
 Route::put('/baseball/Match/{id}', [MatchesController::class, 'update']);
 
-
+//jugadas cruds
 Route::post('/baseball/Match/Jugadas', [PlaysController::class, 'store']);
 Route::put('/baseball/Match/Jugadas/{id}', [PlaysController::class, 'update']);
 
-
+//anotaciones CRUD
 Route::get('/baseball/MatchAnotations/{id}', [MatchAnotationsController::class, 'index']);
 Route::post('/baseball/MatchAnotations/{id}', [MatchAnotationsController::class, 'store']);
 Route::put('/baseball/MatchAnotations/{idnotacion}', [MatchAnotationsController::class, 'update']);

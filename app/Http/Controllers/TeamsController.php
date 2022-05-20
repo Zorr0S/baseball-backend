@@ -57,9 +57,15 @@ class TeamsController extends Controller
      * @param  \App\Models\Teams  $teams
      * @return \Illuminate\Http\Response
      */
-    public function show(Teams $teams)
+    public function show(Request $request)
     {
         //
+        $teams= Teams::find($request->id);
+      
+            $teams->miembros = TeamMembers::where('EquipoID', $teams->id)->get();
+          
+      
+        return $teams;
     }
 
     /**
