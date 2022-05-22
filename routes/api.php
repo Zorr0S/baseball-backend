@@ -55,12 +55,19 @@ Route::get('/baseball/Teams/{id}', [TeamsController::class, 'show']);
     Route::delete('/baseball/Teams/{id}/members/{idMiembro}', [TeamMembersController::class, 'destroy']);
 
 //Torneos CRUD
+Route::get('/baseball/Tournament/{id}', [TournamentsController::class, 'show']);
+Route::put('/baseball/Tournament/{id}', [TournamentsController::class, 'update']);
+
 
 Route::get('/baseball/Tournament', [TournamentsController::class, 'index']);
+
 Route::post('/baseball/Tournament', [TournamentsController::class, 'store']);
 
 //Partidos CRUD    
+Route::get('/baseball/Match/{id}', [MatchesController::class, 'show']);
+
 Route::get('/baseball/Match', [MatchesController::class, 'index']);
+
 Route::post('/baseball/Match', [MatchesController::class, 'store']);
 Route::put('/baseball/Match/{id}', [MatchesController::class, 'update']);
 

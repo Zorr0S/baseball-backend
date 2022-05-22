@@ -22,6 +22,16 @@ class CreatePruebasTable extends Migration
             $table->string('correo', 191)->unique('credentials_correo_key');
         });
 
+        Schema::create('failed_jobs', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('uuid')->unique();
+            $table->text('connection');
+            $table->text('queue');
+            $table->longText('payload');
+            $table->longText('exception');
+            $table->timestamp('failed_at')->useCurrent();
+        });
+
         Schema::create('match_anotations', function (Blueprint $table) {
             $table->integer('id', true);
             $table->integer('IDPartido');
@@ -42,6 +52,25 @@ class CreatePruebasTable extends Migration
             $table->integer('EquipoVisitante')->index('matches_EquipoVisitante_fkey');
             $table->integer('EquipoGanador')->nullable()->index('matches_EquipoGanador_fkey');
             $table->boolean('estatus');
+        });
+
+        Schema::create('password_resets', function (Blueprint $table) {
+            $table->string('email')->index();
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
+        });
+
+        Schema::create('personal_access_tokens', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('tokenable_type');
+            $table->unsignedBigInteger('tokenable_id');
+            $table->string('name');
+            $table->string('token', 64)->unique();
+            $table->text('abilities')->nullable();
+            $table->timestamp('last_used_at')->nullable();
+            $table->timestamps();
+
+            $table->index(['tokenable_type', 'tokenable_id']);
         });
 
         Schema::create('play_types', function (Blueprint $table) {
@@ -99,6 +128,16 @@ class CreatePruebasTable extends Migration
             $table->integer('participantes');
         });
 
+        Schema::create('users', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+
         Schema::table('credentials', function (Blueprint $table) {
             $table->foreign(['IDTipoJugador'], 'Credentials_IDTipoJugador_fkey')->references(['id'])->on('playertype')->onUpdate('CASCADE');
         });
@@ -114,7 +153,7 @@ class CreatePruebasTable extends Migration
             $table->foreign(['EquipoCasa'], 'matches_EquipoCasa_fkey')->references(['id'])->on('teams')->onUpdate('CASCADE');
             $table->foreign(['EquipoGanador'], 'matches_EquipoGanador_fkey')->references(['id'])->on('teams')->onUpdate('CASCADE')->onDelete('SET NULL');
             $table->foreign(['EquipoVisitante'], 'matches_EquipoVisitante_fkey')->references(['id'])->on('teams')->onUpdate('CASCADE');
-            $table->foreign(['idTorneo'], 'matches_idTorneo_fkey')->references(['id'])->on('tournament')->onUpdate('CASCADE')->onDelete('SET NULL');
+            $table->foreign(['idTorneo'], 'matches_idTorneo_fkey')->references(['id'])->on('tournaments')->onUpdate('CASCADE');
         });
 
         Schema::table('player_statistics', function (Blueprint $table) {
@@ -171,7 +210,9 @@ class CreatePruebasTable extends Migration
             $table->dropForeign('Credentials_IDTipoJugador_fkey');
         });
 
-        Schema::dropIfExists('tournament');
+        Schema::dropIfExists('users');
+
+        Schema::dropIfExists('tournaments');
 
         Schema::dropIfExists('teams');
 
@@ -187,9 +228,15 @@ class CreatePruebasTable extends Migration
 
         Schema::dropIfExists('play_types');
 
+        Schema::dropIfExists('personal_access_tokens');
+
+        Schema::dropIfExists('password_resets');
+
         Schema::dropIfExists('matches');
 
         Schema::dropIfExists('match_anotations');
+
+        Schema::dropIfExists('failed_jobs');
 
         Schema::dropIfExists('credentials');
     }

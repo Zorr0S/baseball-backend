@@ -61,9 +61,14 @@ class TournamentsController extends Controller
      * @param  \App\Models\Tournament  $tournament
      * @return \Illuminate\Http\Response
      */
-    public function show(Tournament $tournament)
+    public function show($id)
     {
         //
+        $tournament = Tournaments::where('id',$id)->get();
+        for ($i= 0; $i <sizeof($tournament) ; $i++) { 
+            $tournament[$i]->partidos = Matches::where('idTorneo', $tournament[$i]->id)->get();
+          }
+        return $tournament;
     }
 
     /**
@@ -84,9 +89,21 @@ class TournamentsController extends Controller
      * @param  \App\Models\Tournament  $tournament
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tournament $tournament)
+    public function update(Request $request, Tournaments $tournament)
     {
         //
+        $actualizar = Tournaments::find($request->id);
+        $actualizar->idCiudad=  $request->idCiudad;
+        
+        $actualizar->idCategoria=  $request->idCategoria;
+        $actualizar->idGenero=  $request->idGenero;
+        $actualizar->idTipo =  $request->idTipo;
+        $actualizar->administradores=  $request->administradores;
+        $actualizar->participantes=  $request->participantes;
+        $actualizar->estatus=$request->estatus;
+        $actualizar->update();
+        return $actualizar;
+
     }
 
     /**

@@ -56,9 +56,11 @@ class MatchesController extends Controller
      * @param  \App\Models\Matches  $matches
      * @return \Illuminate\Http\Response
      */
-    public function show(Matches $matches)
+    public function show($id)
     {
         //
+        $matches =  Matches::where('id',$id)->get();
+        return $matches;
     }
 
     /**
