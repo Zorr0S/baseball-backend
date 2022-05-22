@@ -88,6 +88,10 @@ class MatchesController extends Controller
         $matches->Nombre = $request->Nombre;
         $matches->EquipoCasa = $request->EquipoCasa;
         $matches->EquipoVisitante = $request->EquipoVisitante;
+        $matches->idTorneo= $request->idTorneo;
+      
+        $matches->EquipoGanador= $request->EquipoGanador;
+         $matches->estatus= true;
         $matches->update();
 
         return $matches;
