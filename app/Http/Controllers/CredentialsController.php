@@ -44,10 +44,11 @@ class CredentialsController extends Controller
         $credential->Nombre = $request->Nombre;
         $credential->Apellidos = $request->Apellidos;
         $credential->IDTipoJugador = $request->IDTipoJugador;
+        $credential->correo= $request->correo;
         
         $credential->save();
         
-
+        return $credential;
     }
 
     /**

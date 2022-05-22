@@ -16,7 +16,7 @@ use App\Http\Controllers\PlayTypesController;
 use App\Http\Controllers\PlaysController;
 
 use App\Http\Controllers\PositionsController;
-
+use App\Http\Controllers\TournamentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,7 +53,12 @@ Route::get('/baseball/Teams/{id}', [TeamsController::class, 'show']);
     Route::post('/baseball/Teams/{id}/members', [TeamMembersController::class, 'store']);
     //WIP
     Route::delete('/baseball/Teams/{id}/members/{idMiembro}', [TeamMembersController::class, 'destroy']);
-    
+
+//Torneos CRUD
+
+Route::get('/baseball/Tournament', [TournamentsController::class, 'index']);
+Route::post('/baseball/Tournament', [TournamentsController::class, 'store']);
+
 //Partidos CRUD    
 Route::get('/baseball/Match', [MatchesController::class, 'index']);
 Route::post('/baseball/Match', [MatchesController::class, 'store']);

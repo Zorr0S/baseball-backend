@@ -11,3 +11,4 @@ php artisan make:controller TeamMembersController --model=TeamMembers
 
 php artisan make:controller TeamsController --model=Teams
 
+php artisan make:controller TournamentController --model=Tournament

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tournaments;
 use App\Models\Matches;
+
 use Illuminate\Http\Request;
 
-class MatchesController extends Controller
+class TournamentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +16,11 @@ class MatchesController extends Controller
      */
     public function index()
     {
-        //
-        $matches =  Matches::all();
-       
-        return $matches;
+        $tournament = Tournaments::all();
+        for ($i= 0; $i <sizeof($tournament) ; $i++) { 
+            $tournament[$i]->partidos = Matches::where('idTorneo', $tournament[$i]->id)->get();
+          }
+        return $tournament;
     }
 
     /**
@@ -39,24 +42,26 @@ class MatchesController extends Controller
     public function store(Request $request)
     {
         //
-        $matches = new Matches();
-        $matches->idTorneo= $request->idTorneo;
-        $matches->Nombre = $request->Nombre;
-        $matches->EquipoCasa = $request->EquipoCasa;
-        $matches->EquipoVisitante = $request->EquipoVisitante;
-         //EquipoGanador,
-         $matches->estatus= true;
-        $matches->save();
-        return $matches;
+        $torneo = new Tournaments();
+        $torneo->idCiudad=  $request->idCiudad;
+        
+        $torneo->idCategoria=  $request->idCategoria;
+        $torneo->idGenero=  $request->idGenero;
+        $torneo->idTipo =  $request->idTipo;
+        $torneo->administradores=  $request->administradores;
+        $torneo->participantes=  $request->participantes;
+        $torneo->estatus=true;
+        $torneo->save();
+        return $torneo;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Matches  $matches
+     * @param  \App\Models\Tournament  $tournament
      * @return \Illuminate\Http\Response
      */
-    public function show(Matches $matches)
+    public function show(Tournament $tournament)
     {
         //
     }
@@ -64,10 +69,10 @@ class MatchesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Matches  $matches
+     * @param  \App\Models\Tournament  $tournament
      * @return \Illuminate\Http\Response
      */
-    public function edit(Matches $matches)
+    public function edit(Tournament $tournament)
     {
         //
     }
@@ -76,29 +81,21 @@ class MatchesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Matches  $matches
+     * @param  \App\Models\Tournament  $tournament
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Matches $matches)
+    public function update(Request $request, Tournament $tournament)
     {
         //
-        $matches=Matches::find($request->id);
-        $matches->Nombre = $request->Nombre;
-        $matches->EquipoCasa = $request->EquipoCasa;
-        $matches->EquipoVisitante = $request->EquipoVisitante;
-        $matches->update();
-
-        return $matches;
-
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Matches  $matches
+     * @param  \App\Models\Tournament  $tournament
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Matches $matches)
+    public function destroy(Tournament $tournament)
     {
         //
     }
