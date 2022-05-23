@@ -49,6 +49,20 @@ Route::put('/baseball/tournaments/edit/{id}',[TournamentsController::class,'upda
 Route::delete('/baseball/tournaments/destroy/{id}',[TournamentsController::class,'destroy']);
 Route::get('/baseball/tournaments/{id}', [TournamentsController::class, 'show']);
 
+// =====================    matches     =====================>
+Route::get('/baseball/matches', [MatchesController::class, 'index']);
+Route::post('/baseball/matches/create', [MatchesController::class, 'store']);
+Route::put('/baseball/matches/edit/{id}',[MatchesController::class,'update']);
+Route::delete('/baseball/matches/destroy/{id}',[MatchesController::class,'destroy']);
+Route::get('/baseball/matches/{id}', [MatchesController::class, 'show']);
+
+// =====================    players     =====================>
+Route::get('/baseball/players', [PlayersController::class, 'index']);
+Route::post('/baseball/players/create', [PlayersController::class, 'store']);
+Route::put('/baseball/players/edit/{id}',[PlayersController::class,'update']);
+Route::delete('/baseball/players/destroy/{id}',[PlayersController::class,'destroy']);
+Route::get('/baseball/players/{id}', [PlayersController::class, 'show']);
+
 // Route::post('/baseball/Teams', [TeamsController::class, 'store']);
 // Route::put('/baseball/Teams/{id}', [TeamsController::class, 'update']);
 

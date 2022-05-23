@@ -15,7 +15,7 @@ class MatchesController extends Controller
     public function index()
     {
         //
-        $matches =  Matches::all();
+        $matches= Matches::all();
        
         return $matches;
     }
@@ -25,7 +25,7 @@ class MatchesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
     }
@@ -39,15 +39,17 @@ class MatchesController extends Controller
     public function store(Request $request)
     {
         //
-        $matches = new Matches();
-        $matches->idTorneo= $request->idTorneo;
-        $matches->Nombre = $request->Nombre;
-        $matches->EquipoCasa = $request->EquipoCasa;
-        $matches->EquipoVisitante = $request->EquipoVisitante;
-         //EquipoGanador,
-         $matches->estatus= true;
-        $matches->save();
-        return $matches;
+        // $matches = new Matches();
+        // $matches->idTorneo= $request->idTorneo;
+        // $matches->Nombre = $request->Nombre;
+        // $matches->MatchesCasa = $request->MatchesCasa;
+        // $matches->MatchesVisitante = $request->MatchesVisitante;
+        //  //MatchesGanador,
+        //  $matches->estatus= true;
+        // $matches->save();
+        // return $matches;
+
+        return Matches::create($request->all());
     }
 
     /**
@@ -59,7 +61,11 @@ class MatchesController extends Controller
     public function show($id)
     {
         //
-        $matches =  Matches::where('id',$id)->get();
+        $matches = Matches::select('*')
+        ->where('idMatch','=',$id)
+        // ->where('estatus','=',$status)
+        ->get();
+
         return $matches;
     }
 
@@ -81,21 +87,24 @@ class MatchesController extends Controller
      * @param  \App\Models\Matches  $matches
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Matches $matches)
+    public function update(Request $request, $id)
     {
         //
-        $matches=Matches::find($request->id);
-        $matches->Nombre = $request->Nombre;
-        $matches->EquipoCasa = $request->EquipoCasa;
-        $matches->EquipoVisitante = $request->EquipoVisitante;
-        $matches->idTorneo= $request->idTorneo;
+        // $matches=Matches::find($request->id);
+        // $matches->Nombre = $request->Nombre;
+        // $matches->MatchesCasa = $request->MatchesCasa;
+        // $matches->MatchesVisitante = $request->MatchesVisitante;
+        // $matches->idTorneo= $request->idTorneo;
       
-        $matches->EquipoGanador= $request->EquipoGanador;
-         $matches->estatus= true;
-        $matches->update();
+        // $matches->MatchesGanador= $request->MatchesGanador;
+        //  $matches->estatus= true;
+        // $matches->update();
 
+        // return $matches;
+        $matches = Matches::select('*')
+        ->where('idMatch','=',$id)
+        ->update($request->all());
         return $matches;
-
     }
 
     /**
@@ -104,8 +113,13 @@ class MatchesController extends Controller
      * @param  \App\Models\Matches  $matches
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Matches $matches)
+    public function destroy($id)
     {
         //
+        $matches = Matches::select('*')
+        ->where('idMatch','=',$id)
+        ->delete();
+
+        return $matches;
     }
 }
