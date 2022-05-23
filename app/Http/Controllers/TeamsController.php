@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Teams;
-use App\Models\TeamMembers;
+use App\Models\Equipo;
 
 use Illuminate\Http\Request;
 
@@ -16,12 +15,8 @@ class TeamsController extends Controller
      */
     public function index()
     {
-        //
-        $teams = Teams::all();
-        for ($i= 0; $i <sizeof($teams) ; $i++) { 
-            $teams[$i]->miembros = TeamMembers::where('EquipoID', $teams[$i]->id)->get();
-          }
-      
+        // select * from equipos
+        $teams = Equipo::all();
         return $teams;
     }
 
@@ -30,9 +25,10 @@ class TeamsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        
     }
 
     /**
@@ -43,12 +39,7 @@ class TeamsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $teams = new Teams();
-        $teams->Nombre = $request->Nombre;
-        
-        $teams->save();
-        return $teams;
+        return Equipo::create($request->all());
     }
 
     /**
@@ -57,15 +48,16 @@ class TeamsController extends Controller
      * @param  \App\Models\Teams  $teams
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
-        //
-        $teams= Teams::find($request->id);
-      
-            $teams->miembros = TeamMembers::where('EquipoID', $teams->id)->get();
-          
-      
-        return $teams;
+
+        $team = Equipo::select('*')
+        ->where('idEquipo','=',$id)
+        // ->where('estatus','=',$status)
+        ->get();
+
+        return $team;
+
     }
 
     /**
@@ -86,13 +78,18 @@ class TeamsController extends Controller
      * @param  \App\Models\Teams  $teams
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Teams $teams)
+    public function update(Request $request, $id)
     {
         //
-        $teams= Teams::find($request->id);
-        $teams->Nombre = $request->Nombre;
-        $teams->update();
-        return $teams;
+        // $team = Equipo::find($id);
+        // $team->update($request->all());
+        // return $team;
+
+
+        $team = Equipo::select('*')
+        ->where('idEquipo','=',$id)
+        ->update($request->all());
+        return $team;
     }
 
     /**
@@ -101,9 +98,14 @@ class TeamsController extends Controller
      * @param  \App\Models\Teams  $teams
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Teams $teams)
+    public function destroy($id)
     {
-        //
 
+        $team = Equipo::select('*')
+        ->where('idEquipo','=',$id)
+        ->delete();
+
+        return $team;
+        //return Equipo::destroy($id);
     }
 }

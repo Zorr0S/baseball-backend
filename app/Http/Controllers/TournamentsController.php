@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tournaments;
 use App\Models\Matches;
+use App\Models\Torneo;
 
 use Illuminate\Http\Request;
 
@@ -16,11 +17,9 @@ class TournamentsController extends Controller
      */
     public function index()
     {
-        $tournament = Tournaments::all();
-        for ($i= 0; $i <sizeof($tournament) ; $i++) { 
-            $tournament[$i]->partidos = Matches::where('idTorneo', $tournament[$i]->id)->get();
-          }
-        return $tournament;
+        // select * from equipos
+        $tournaments = Torneo::all();
+        return $tournaments;
     }
 
     /**
@@ -42,17 +41,18 @@ class TournamentsController extends Controller
     public function store(Request $request)
     {
         //
-        $torneo = new Tournaments();
-        $torneo->idCiudad=  $request->idCiudad;
+        // $torneo = new Tournaments();
+        // $torneo->idCiudad=  $request->idCiudad;
         
-        $torneo->idCategoria=  $request->idCategoria;
-        $torneo->idGenero=  $request->idGenero;
-        $torneo->idTipo =  $request->idTipo;
-        $torneo->administradores=  $request->administradores;
-        $torneo->participantes=  $request->participantes;
-        $torneo->estatus=true;
-        $torneo->save();
-        return $torneo;
+        // $torneo->idCategoria=  $request->idCategoria;
+        // $torneo->idGenero=  $request->idGenero;
+        // $torneo->idTipo =  $request->idTipo;
+        // $torneo->administradores=  $request->administradores;
+        // $torneo->participantes=  $request->participantes;
+        // $torneo->estatus=true;
+        // $torneo->save();
+        // return $torneo;
+        return Torneo::create($request->all());
     }
 
     /**
@@ -64,10 +64,16 @@ class TournamentsController extends Controller
     public function show($id)
     {
         //
-        $tournament = Tournaments::where('id',$id)->get();
-        for ($i= 0; $i <sizeof($tournament) ; $i++) { 
-            $tournament[$i]->partidos = Matches::where('idTorneo', $tournament[$i]->id)->get();
-          }
+        // $tournament = Tournaments::where('id',$id)->get();
+        // for ($i= 0; $i <sizeof($tournament) ; $i++) { 
+        //     $tournament[$i]->partidos = Matches::where('idTorneo', $tournament[$i]->id)->get();
+        //   }
+        // return $tournament;
+        $tournament = Torneo::select('*')
+        ->where('idTorneo','=',$id)
+        // ->where('estatus','=',$status)
+        ->get();
+
         return $tournament;
     }
 
@@ -89,20 +95,24 @@ class TournamentsController extends Controller
      * @param  \App\Models\Tournament  $tournament
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tournaments $tournament)
+    public function update(Request $request, $id)
     {
         //
-        $actualizar = Tournaments::find($request->id);
-        $actualizar->idCiudad=  $request->idCiudad;
+        // $actualizar = Tournaments::find($request->id);
+        // $actualizar->idCiudad=  $request->idCiudad;
         
-        $actualizar->idCategoria=  $request->idCategoria;
-        $actualizar->idGenero=  $request->idGenero;
-        $actualizar->idTipo =  $request->idTipo;
-        $actualizar->administradores=  $request->administradores;
-        $actualizar->participantes=  $request->participantes;
-        $actualizar->estatus=$request->estatus;
-        $actualizar->update();
-        return $actualizar;
+        // $actualizar->idCategoria=  $request->idCategoria;
+        // $actualizar->idGenero=  $request->idGenero;
+        // $actualizar->idTipo =  $request->idTipo;
+        // $actualizar->administradores=  $request->administradores;
+        // $actualizar->participantes=  $request->participantes;
+        // $actualizar->estatus=$request->estatus;
+        // $actualizar->update();
+        // return $actualizar;
+        $tournament = Torneo::select('*')
+        ->where('idTorneo','=',$id)
+        ->update($request->all());
+        return $tournament;
 
     }
 
@@ -112,8 +122,13 @@ class TournamentsController extends Controller
      * @param  \App\Models\Tournament  $tournament
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tournament $tournament)
+    public function destroy($id)
     {
         //
+        $tournament = Torneo::select('*')
+        ->where('idTorneo','=',$id)
+        ->delete();
+
+        return $tournament;
     }
 }
