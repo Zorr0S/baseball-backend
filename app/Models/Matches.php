@@ -12,13 +12,11 @@ class Matches extends Model
     protected $fillable = [ 
         "idMatch",
         "idTorneo",
-        "nombre",
         "EquipoCasa",
         "EquipoVisitante",
         "EquipoGanador",
         "fecha",
-        "horaInicial",
-        "horaFinal",
+        "horario",
         "estatus",
     ];
 }

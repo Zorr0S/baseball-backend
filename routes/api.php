@@ -20,6 +20,8 @@ use App\Http\Controllers\TournamentsController;
 
 use App\Http\Controllers\equiposController;
 
+use App\Http\Controllers\JugadoresController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -57,11 +59,11 @@ Route::delete('/baseball/matches/destroy/{id}',[MatchesController::class,'destro
 Route::get('/baseball/matches/{id}', [MatchesController::class, 'show']);
 
 // =====================    players     =====================>
-Route::get('/baseball/players', [PlayersController::class, 'index']);
-Route::post('/baseball/players/create', [PlayersController::class, 'store']);
-Route::put('/baseball/players/edit/{id}',[PlayersController::class,'update']);
-Route::delete('/baseball/players/destroy/{id}',[PlayersController::class,'destroy']);
-Route::get('/baseball/players/{id}', [PlayersController::class, 'show']);
+Route::get('/baseball/players', [JugadoresController::class, 'index']);
+Route::post('/baseball/players/create', [JugadoresController::class, 'store']);
+Route::put('/baseball/players/edit/{id}',[JugadoresController::class,'update']);
+Route::delete('/baseball/players/destroy/{id}',[JugadoresController::class,'destroy']);
+Route::get('/baseball/players/{id}', [JugadoresController::class, 'show']);
 
 // Route::post('/baseball/Teams', [TeamsController::class, 'store']);
 // Route::put('/baseball/Teams/{id}', [TeamsController::class, 'update']);

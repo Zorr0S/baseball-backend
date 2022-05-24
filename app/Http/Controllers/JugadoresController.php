@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Player;
-
 use Illuminate\Http\Request;
+use App\Models\Player;
+use App\Models\Jugadores;
 
-class PlayersController extends Controller
+class JugadoresController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class PlayersController extends Controller
     public function index()
     {
         // select * from Players
-        $jugadores = Player::all();
+        $jugadores = Jugadores::all();
         return $jugadores;
     }
 
@@ -38,7 +38,7 @@ class PlayersController extends Controller
      */
     public function store(Request $request)
     {
-        return Player::create($request->all());
+        return Jugadores::create($request->all());
     }
 
     /**
@@ -49,12 +49,12 @@ class PlayersController extends Controller
      */
     public function show($id)
     {
-        $player = Player::select('*')
+        $jugador = Jugadores::select('*')
         ->where('idJugador','=',$id)
         // ->where('estatus','=',$status)
         ->get();
 
-        return $player;
+        return $jugador;
 
     }
 
@@ -79,10 +79,10 @@ class PlayersController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $player = Player::select('*')
+        $jugador = Jugadores::select('*')
         ->where('idJugador','=',$id)
         ->update($request->all());
-        return $player;
+        return $jugador;
     }
 
     /**
@@ -94,10 +94,10 @@ class PlayersController extends Controller
     public function destroy($id)
     {
         //
-        $player = Player::select('*')
+        $jugador = Jugadores::select('*')
         ->where('idJugador','=',$id)
         ->delete();
 
-        return $player;
+        return $jugador;
     }
 }
