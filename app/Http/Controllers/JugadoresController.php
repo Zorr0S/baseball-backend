@@ -50,7 +50,7 @@ class JugadoresController extends Controller
     public function show($id)
     {
         $jugador = Jugadores::select('*')
-        ->where('idJugador','=',$id)
+        ->where('idEquipo','=',$id)
         // ->where('estatus','=',$status)
         ->get();
 
