@@ -10,13 +10,16 @@ class Matches extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = [ 
-        "idMatch",
-        "idTorneo",
-        "EquipoCasa",
-        "EquipoVisitante",
-        "EquipoGanador",
-        "fecha",
-        "horario",
-        "estatus",
+        'idMatch',
+        'TorneoName',
+        'idTorneo',
+        'CasaName',
+        'EquipoCasa',
+        'VisitanteName',
+        'EquipoVisitante',
+        'EquipoGanador',
+        'fecha',
+        'horario',
+        'estatus',
     ];
 }

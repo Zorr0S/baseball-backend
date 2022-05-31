@@ -10,16 +10,16 @@ class Jugadores extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = [
-        "idJugador",
-        "idEquipo",
-        "idTipo",
-        "imagen",
-        "nombre",
-        "bateo",
-        "lanzamiento",
-        "edad",
-        "estatura",
-        "peso",
-        "estatus",
+        'idJugador',
+        'idEquipo',
+        'idTipo',
+        'imagen',
+        'nombre',
+        'bateo',
+        'lanzamiento',
+        'edad',
+        'estatura',
+        'peso',
+        'estatus',
     ];
 }

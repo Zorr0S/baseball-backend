@@ -9,7 +9,15 @@ class Tournaments extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = ["idCategoria", "idGenero", "idTipo", "idCiudad", "administradores", "estatus", "participantes"];
+    protected $fillable = [
+        'idCategoria', 
+        'idGenero', 
+        'idTipo', 
+        'idCiudad', 
+        'administradores',
+        'estatus', 
+        'participantes'
+    ];
 
 
 }

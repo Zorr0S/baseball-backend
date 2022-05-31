@@ -58,7 +58,7 @@ Route::put('/baseball/matches/edit/{id}',[MatchesController::class,'update']);
 Route::delete('/baseball/matches/destroy/{id}',[MatchesController::class,'destroy']);
 Route::get('/baseball/matches/{id}', [MatchesController::class, 'show']);
 
-// =====================    players     =====================>
+// =====================    jugadores     =====================>
 Route::get('/baseball/players', [JugadoresController::class, 'index']);
 Route::post('/baseball/players/create', [JugadoresController::class, 'store']);
 Route::put('/baseball/players/edit/{id}',[JugadoresController::class,'update']);
