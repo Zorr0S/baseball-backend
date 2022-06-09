@@ -21,6 +21,7 @@ use App\Http\Controllers\TournamentsController;
 use App\Http\Controllers\equiposController;
 
 use App\Http\Controllers\JugadoresController;
+use App\Http\Controllers\ScoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,14 @@ Route::post('/baseball/players/create', [JugadoresController::class, 'store']);
 Route::put('/baseball/players/edit/{id}',[JugadoresController::class,'update']);
 Route::delete('/baseball/players/destroy/{id}',[JugadoresController::class,'destroy']);
 Route::get('/baseball/players/{id}', [JugadoresController::class, 'show']);
+
+// =====================    scores     =====================>
+Route::get('/baseball/scores', [ScoreController::class, 'index']);
+Route::post('/baseball/scores/create', [ScoreController::class, 'store']);
+Route::put('/baseball/scores/edit/{id}',[ScoreController::class,'update']);
+Route::delete('/baseball/scores/destroy/{id}',[ScoreController::class,'destroy']);
+Route::get('/baseball/scores/{id}', [ScoreController::class, 'show']);
+
 
 // Route::post('/baseball/Teams', [TeamsController::class, 'store']);
 // Route::put('/baseball/Teams/{id}', [TeamsController::class, 'update']);
