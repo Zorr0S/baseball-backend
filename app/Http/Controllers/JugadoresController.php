@@ -55,7 +55,6 @@ class JugadoresController extends Controller
         ->get();
 
         return $jugador;
-
     }
 
     /**

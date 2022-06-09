@@ -13,13 +13,11 @@ class Jugadores extends Model
         'idJugador',
         'idEquipo',
         'idTipo',
-        'imagen',
+        'jersey',
         'nombre',
         'bateo',
         'lanzamiento',
-        'edad',
-        'estatura',
-        'peso',
+        'nacimiento',
         'estatus',
     ];
 }
