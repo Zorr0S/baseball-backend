@@ -15,8 +15,9 @@ class CreateEquiposTable extends Migration
     {
         Schema::create('equipos', function (Blueprint $table) {
             $table->integer('idEquipo', true);
+            $table->integer('idAdmin')->default(0);
             $table->string('nombre');
-            $table->string('logo');
+            $table->string('logo')->default('assets/baseball/TeamsLogos/default-team-64.png');
             $table->boolean('estatus')->default(true);
         });
     }

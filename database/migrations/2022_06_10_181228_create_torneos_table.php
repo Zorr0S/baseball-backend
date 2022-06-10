@@ -15,18 +15,14 @@ class CreateTorneosTable extends Migration
     {
         Schema::create('torneos', function (Blueprint $table) {
             $table->integer('idTorneo', true);
-            $table->integer('idLocal')->comment('ID del Equipo Local');
-            $table->integer('idVisitante')->comment('ID del Equipo Visitante');
-            $table->integer('idCategoria');
-            $table->integer('idGenero');
-            $table->integer('idTipo');
-            $table->integer('idCiudad');
-            $table->integer('idLugar');
-            $table->date('fecha');
-            $table->time('horario');
+            $table->string('nombre');
+            $table->string('Categoria');
+            $table->string('Genero');
+            $table->string('Tipo');
+            $table->string('Ciudad');
+            $table->string('Lugar');
             $table->string('administradores');
-            $table->string('arbitros');
-            $table->string('entrenadores');
+            $table->string('participantes')->nullable();
             $table->boolean('estatus')->default(true);
         });
     }

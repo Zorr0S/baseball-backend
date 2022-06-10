@@ -17,14 +17,17 @@ class CreateJugadoresTable extends Migration
             $table->integer('idJugador', true);
             $table->integer('idEquipo');
             $table->integer('idTipo');
-            $table->string('imagen');
+            $table->integer('jersey');
             $table->string('nombre');
             $table->string('bateo');
             $table->string('lanzamiento');
-            $table->string('edad');
-            $table->string('estatura');
-            $table->string('peso');
+            $table->date('nacimiento')->nullable();
             $table->boolean('estatus')->default(true);
+            $table->integer('AB')->nullable()->default(0);
+            $table->integer('H')->nullable()->default(0);
+            $table->integer('twoB')->nullable()->default(0);
+            $table->integer('threeB')->nullable()->default(0);
+            $table->integer('HR')->nullable()->default(0);
         });
     }
 
