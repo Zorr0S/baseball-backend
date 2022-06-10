@@ -34,9 +34,9 @@ use App\Http\Controllers\ScoreController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 // =====================    equipos     =====================>
 Route::get('/baseball/teams', [TeamsController::class, 'index']);
@@ -67,11 +67,11 @@ Route::delete('/baseball/players/destroy/{id}',[JugadoresController::class,'dest
 Route::get('/baseball/players/{id}', [JugadoresController::class, 'show']);
 
 // =====================    scores     =====================>
-Route::get('/baseball/scores', [ScoreController::class, 'index']);
-Route::post('/baseball/scores/create', [ScoreController::class, 'store']);
-Route::put('/baseball/scores/edit/{id}',[ScoreController::class,'update']);
-Route::delete('/baseball/scores/destroy/{id}',[ScoreController::class,'destroy']);
-Route::get('/baseball/scores/{id}', [ScoreController::class, 'show']);
+// Route::get('/baseball/scores', [ScoreController::class, 'index']);
+// Route::post('/baseball/scores/create', [ScoreController::class, 'store']);
+// Route::put('/baseball/scores/edit/{id}',[ScoreController::class,'update']);
+// Route::delete('/baseball/scores/destroy/{id}',[ScoreController::class,'destroy']);
+// Route::get('/baseball/scores/{id}', [ScoreController::class, 'show']);
 
 
 // Route::post('/baseball/Teams', [TeamsController::class, 'store']);

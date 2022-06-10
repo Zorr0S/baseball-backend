@@ -19,5 +19,10 @@ class Jugadores extends Model
         'lanzamiento',
         'nacimiento',
         'estatus',
+        'AB',
+        'H',
+        'twoB',
+        'threeB',
+        'HR'
     ];
 }
